@@ -18,8 +18,6 @@ export async function POST(req: NextRequest) {
         { status: "ACTIVE", deadline: { $lte: now } },
         { $set: { status: "EXPIRED" } }
       )
-
-    // Log how many tasks were updated
     console.log(`Expired tasks updated: ${result.modifiedCount}`)
 
     if (result.modifiedCount === 0) {
