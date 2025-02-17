@@ -33,10 +33,12 @@ export async function GET(request: NextRequest) {
 
     if (dateParam) {
       const date = new Date(dateParam);
-      const startOfDay = new Date(date.setHours(0, 0, 0, 0));
-      const endOfDay = new Date(date.setHours(23, 59, 59, 999));
 
-      filter.deadline = { $gte: startOfDay, $lte: endOfDay };
+      // Ensure the date is in UTC (this will ignore the local time zone offset)
+      const startOfDayUTC = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), 0, 0, 0, 0));
+      const endOfDayUTC = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), 23, 59, 59, 999));
+
+      filter.deadline = { $gte: startOfDayUTC, $lte: endOfDayUTC };
     }
 
     if (statusFilter === "ALL") {
@@ -51,6 +53,7 @@ export async function GET(request: NextRequest) {
         { description: { $regex: searchQuery, $options: "i" } },
       ];
     }
+
     const tasks = await db.collection("tasks").find(filter).sort({ deadline: 1 }).toArray();
 
     return NextResponse.json(tasks);
@@ -59,7 +62,6 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ message: "Internal server error" }, { status: 500 });
   }
 }
-
 
 export async function POST(request: NextRequest) {
   try {
@@ -72,8 +74,8 @@ export async function POST(request: NextRequest) {
     const deadlineDate = new Date(deadline);
 
     // Subtract 5 hours and 30 minutes
-    deadlineDate.setHours(deadlineDate.getHours() - 5);
-    deadlineDate.setMinutes(deadlineDate.getMinutes() - 30);
+    // deadlineDate.setHours(deadlineDate.getHours() - 5);
+    // deadlineDate.setMinutes(deadlineDate.getMinutes() - 30);
     
     const newTask = {
       userId: new ObjectId(userId),
