@@ -9,6 +9,7 @@ export async function POST(request: Request) {
 
     const client = await clientPromise
     const db = client.db()
+    
 
     const user = await db.collection("users").findOne({ username })
     if (!user) {
