@@ -47,7 +47,7 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
 
   if (!ObjectId.isValid(taskId)) return NextResponse.json({ message: "Invalid Task ID" }, { status: 400 });
 
-  // 🔥 Check if the task is expired
+  // Check if the task is expired
   const existingTask = await db.collection("tasks").findOne({ _id: new ObjectId(taskId), userId: new ObjectId(userId) });
 
   if (!existingTask) return NextResponse.json({ message: "Task not found" }, { status: 404 });
@@ -58,7 +58,7 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
 
   const result = await db.collection("tasks").updateOne(
     { _id: new ObjectId(taskId), userId: new ObjectId(userId) },
-    { $set: { title, description, status, deadline: new Date(deadline) } }
+    { $set: { title, description, status, deadline: new (deadline) } }
   );
 
   return NextResponse.json({ message: "Task updated successfully" });
