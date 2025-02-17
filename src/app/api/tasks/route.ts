@@ -69,13 +69,18 @@ export async function POST(request: NextRequest) {
     const { title, description, deadline } = await request.json();
     const client = await clientPromise;
     const db = client.db();
+    const deadlineDate = new Date(deadline);
 
+    // Subtract 5 hours and 30 minutes
+    deadlineDate.setHours(deadlineDate.getHours() - 5);
+    deadlineDate.setMinutes(deadlineDate.getMinutes() - 30);
+    
     const newTask = {
       userId: new ObjectId(userId),
       title,
       description,
       status: "ACTIVE",
-      deadline: new Date(deadline),
+      deadline: deadlineDate,
       createdAt: new Date(),
     };
 
