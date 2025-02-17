@@ -33,6 +33,8 @@ export async function GET(request: NextRequest) {
 
     if (dateParam) {
       const date = new Date(dateParam);
+      date.setHours(date.getHours() + 5);
+      date.setMinutes(date.getMinutes() + 30);
 
       // Ensure the date is in UTC (this will ignore the local time zone offset)
       const startOfDayUTC = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), 0, 0, 0, 0));
