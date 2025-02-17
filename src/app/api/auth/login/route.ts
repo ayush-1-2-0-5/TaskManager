@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server"
 import bcrypt from 'bcryptjs';
 import { SignJWT } from "jose"
-import clientPromise from "@/app/lib/mongodb"
+import clientPromise from "../../../lib/mongodb";
 
 export async function POST(request: Request) {
   try {

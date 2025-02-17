@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import clientPromise from "@/app/lib/mongodb";
+import clientPromise from "../../lib/mongodb";
 import { ObjectId } from "mongodb";
 import { jwtVerify } from "jose";
 

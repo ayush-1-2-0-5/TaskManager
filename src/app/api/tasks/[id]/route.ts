@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import clientPromise from "@/app/lib/mongodb";
+import clientPromise from "../../../lib/mongodb";
 import { ObjectId } from "mongodb";
 import { jwtVerify } from "jose";
 
@@ -58,7 +58,8 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
 
   const result = await db.collection("tasks").updateOne(
     { _id: new ObjectId(taskId), userId: new ObjectId(userId) },
-    { $set: { title, description, status, deadline: new (deadline) } }
+    { $set: { title, description, status, deadline: new Date(deadline)
+} }
   );
 
   return NextResponse.json({ message: "Task updated successfully" });
