@@ -11,8 +11,10 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        border: "var(--border)", // Add this line
       },
     },
   },
+  
   plugins: [],
 } satisfies Config;
