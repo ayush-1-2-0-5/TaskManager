@@ -31,6 +31,10 @@ Task Master is a powerful and efficient Todo application that helps in schedulin
 
 ---
 
+
+
+
+
 ## ⏳ Task Expiration Logic  
 
 - Users can update the task status **only before the deadline**.  
@@ -39,6 +43,37 @@ Task Master is a powerful and efficient Todo application that helps in schedulin
 - A **cron job** is scheduled at `/api/scheduler` to check and update expired tasks.  
 
 ---
+
+## 📸 Screenshots  
+
+Below are some screenshots of the **Task Master** application:
+
+### 🏠 Home Page  
+![Home Page](./screenshots/home.png)  
+
+### 🔑 Login Page  
+![Login Page](./screenshots/loginpage.png)  
+
+### 📝 Register Page  
+![Register Page](./screenshots/register.png)  
+
+### 📊 Dashboard  
+![Dashboard](./screenshots/dashboard.png)  
+
+### ⏳ Expired Tasks  
+![Expired Tasks](./screenshots/expiredtasks.png)  
+
+### 🔍 Filters  
+![Filters](./screenshots/filters.png)  
+
+### 📈 History Analysis  
+![History Analysis](./screenshots/historyanalysis.png)  
+
+### 🔐 Update Password  
+![Update Password](./screenshots/updatepassword.png)  
+
+### 🏷️ Update Profile  
+![Update Profile](./screenshots/updateprofile.png)
 
 ## 📦 Project Dependencies  
 
@@ -83,33 +118,3 @@ Task Master is a powerful and efficient Todo application that helps in schedulin
   }
 }
 
-## 📸 Screenshots  
-
-Below are some screenshots of the **Task Master** application:
-
-### 🏠 Home Page  
-![Home Page](./screenshots/home.png)  
-
-### 🔑 Login Page  
-![Login Page](./screenshots/loginpage.png)  
-
-### 📝 Register Page  
-![Register Page](./screenshots/register.png)  
-
-### 📊 Dashboard  
-![Dashboard](./screenshots/dashboard.png)  
-
-### ⏳ Expired Tasks  
-![Expired Tasks](./screenshots/expiredtasks.png)  
-
-### 🔍 Filters  
-![Filters](./screenshots/filters.png)  
-
-### 📈 History Analysis  
-![History Analysis](./screenshots/historyanalysis.png)  
-
-### 🔐 Update Password  
-![Update Password](./screenshots/updatepassword.png)  
-
-### 🏷️ Update Profile  
-![Update Profile](./screenshots/updateprofile.png)
