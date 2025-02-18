@@ -77,12 +77,12 @@ export async function POST(request: NextRequest) {
     const db = client.db();
     const deadlineDate = new Date(deadline);
     const created= new Date();
-    // created.setHours(created.getHours() + 5);
-    // created.setMinutes(created.getMinutes()+30);
+    created.setHours(created.getHours() + 5);
+    created.setMinutes(created.getMinutes()+30);
 
   
-    deadlineDate.setHours(deadlineDate.getHours() + 5);
-    deadlineDate.setMinutes(deadlineDate.getMinutes()+30);
+    // deadlineDate.setHours(deadlineDate.getHours() + 5);
+    // deadlineDate.setMinutes(deadlineDate.getMinutes()+30);
     
     const newTask = {
       userId: new ObjectId(userId),
