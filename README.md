@@ -2,7 +2,7 @@
 
 Task Master is a powerful and efficient Todo application that helps in scheduling and monitoring daily tasks. Built with **Next.js 14**, it allows users to set deadlines, track task progress, and manage their workflow effectively.  
 
-🚀 **Live Demo:** [Task Master Web View](https://sk-manager-umber-kappa.vercel.app/)  
+🚀 **Live Demo:** [Task Master Web View](https://task-manager-umber-kappa.vercel.app/)  
 
 ---
 
@@ -82,3 +82,34 @@ Task Master is a powerful and efficient Todo application that helps in schedulin
     "typescript": "^5.7.3"
   }
 }
+
+## 📸 Screenshots  
+
+Below are some screenshots of the **Task Master** application:
+
+### 🏠 Home Page  
+![Home Page](./screenshots/home.png)  
+
+### 🔑 Login Page  
+![Login Page](./screenshots/loginpage.png)  
+
+### 📝 Register Page  
+![Register Page](./screenshots/register.png)  
+
+### 📊 Dashboard  
+![Dashboard](./screenshots/dashboard.png)  
+
+### ⏳ Expired Tasks  
+![Expired Tasks](./screenshots/expiredtasks.png)  
+
+### 🔍 Filters  
+![Filters](./screenshots/filters.png)  
+
+### 📈 History Analysis  
+![History Analysis](./screenshots/historyanalysis.png)  
+
+### 🔐 Update Password  
+![Update Password](./screenshots/updatepassword.png)  
+
+### 🏷️ Update Profile  
+![Update Profile](./screenshots/updateprofile.png)
