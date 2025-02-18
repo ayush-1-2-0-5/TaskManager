@@ -20,7 +20,7 @@ export async function GET(request: NextRequest) {
   try {
     const userId = await getUserIdFromToken(request);
     if (!userId) return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
-
+      
     const client = await clientPromise;
     const db = client.db();
 
@@ -33,12 +33,14 @@ export async function GET(request: NextRequest) {
 
     if (dateParam) {
       const date = new Date(dateParam);
-      date.setHours(date.getHours() - 5);
-      date.setMinutes(date.getMinutes() - 30);
+    
+      // console.log('date',date);
 
       // Ensure the date is in UTC (this will ignore the local time zone offset)
       const startOfDayUTC = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), 0, 0, 0, 0));
       const endOfDayUTC = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), 23, 59, 59, 999));
+      // console.log('startOfDayUTC',startOfDayUTC);
+      // console.log('endOfDayUTC',endOfDayUTC);
 
       filter.deadline = { $gte: startOfDayUTC, $lte: endOfDayUTC };
     }
@@ -74,10 +76,13 @@ export async function POST(request: NextRequest) {
     const client = await clientPromise;
     const db = client.db();
     const deadlineDate = new Date(deadline);
+    const created= new Date();
+    created.setHours(created.getHours() + 5);
+    created.setMinutes(created.getMinutes()+30);
 
   
-    deadlineDate.setHours(deadlineDate.getHours() - 5);
-    deadlineDate.setMinutes(deadlineDate.getMinutes() - 30);
+    deadlineDate.setHours(deadlineDate.getHours() + 5);
+    deadlineDate.setMinutes(deadlineDate.getMinutes()+30);
     
     const newTask = {
       userId: new ObjectId(userId),
@@ -85,7 +90,7 @@ export async function POST(request: NextRequest) {
       description,
       status: "ACTIVE",
       deadline: deadlineDate,
-      createdAt: new Date(),
+      createdAt: created,
     };
 
     await db.collection("tasks").insertOne(newTask);

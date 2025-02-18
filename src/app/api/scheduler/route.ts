@@ -3,13 +3,16 @@ import clientPromise from "../../lib/mongodb"
 import { NextRequest } from 'next/server'  // Importing NextRequest for typing
 
 export async function POST(req: NextRequest) {
-  console.log("Running task scheduler manually at:", new Date().toISOString())
+
   const client = await clientPromise
   const db = client.db()
   console.log("Connected to MongoDB")
 
   const now = new Date()
+  now.setHours(now.getHours() + 5)
+  now.setMinutes(now.getMinutes() + 30)
   console.log("Current time:", now.toISOString())
+  console.log("Running task scheduler manually at:", now.toISOString)
 
   try {
     const result = await db

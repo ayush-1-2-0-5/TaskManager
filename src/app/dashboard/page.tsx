@@ -25,6 +25,7 @@ export default function Dashboard() {
   date.setHours(date.getHours() + 5)
   date.setMinutes(date.getMinutes() + 30)
   const formattedDate = date.toISOString().split("T")[0]
+  console.log("Formatted Date:", formattedDate)
   const [selectedDate, setSelectedDate] = useState(formattedDate)
   const [searchQuery, setSearchQuery] = useState("")
   const [debouncedQuery, setDebouncedQuery] = useState("")
@@ -32,7 +33,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     fetchTasks()
-  }, [filter, selectedDate, debouncedQuery]) // Removed unnecessary dependencies
+  }, [filter, selectedDate, debouncedQuery])
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
@@ -118,6 +119,9 @@ export default function Dashboard() {
   }
 
   const currentDate = new Date()
+  currentDate.setHours(currentDate.getHours() + 5)
+  currentDate.setMinutes(currentDate.getMinutes() + 30)
+  console.log("Current Date:", currentDate)
   const upcomingTasks = tasks.filter((task) => new Date(task.deadline) > currentDate)
   const historyTasks = tasks.filter((task) => new Date(task.deadline) <= currentDate)
 
@@ -214,7 +218,7 @@ export default function Dashboard() {
                           {task.status}
                         </span>
                         <span className="text-sm font-semibold text-gray-700">
-                          🕒 Deadline: {taskDeadline.toLocaleString()}
+                        🕒 Deadline: {taskDeadline.toISOString().split("T")[0] + " " + taskDeadline.toISOString().split("T")[1].split(".")[0]}
                         </span>
                       </div>
                       <div className="flex justify-between mt-4">
@@ -256,6 +260,8 @@ export default function Dashboard() {
                           ? "bg-green-100 border-green-500"
                           : "bg-red-100 border-red-500"
 
+                 const taskDeadline = new Date(task.deadline)
+
                   return (
                     <div key={task._id} className={`p-6 border-l-8 ${cardBgColor} rounded-lg shadow-md`}>
                       <h3 className="text-xl font-semibold mb-2 text-gray-800">{task.title}</h3>
@@ -265,7 +271,7 @@ export default function Dashboard() {
                           {task.status}
                         </span>
                         <span className="text-sm font-semibold text-gray-700">
-                          🕒 Deadline: {new Date(task.deadline).toLocaleString()}
+                        🕒 Deadline: {taskDeadline.toISOString().split("T")[0] + " " + taskDeadline.toISOString().split("T")[1].split(".")[0]}
                         </span>
                       </div>
                       <div className="flex justify-between mt-4">

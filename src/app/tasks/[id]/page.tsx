@@ -84,7 +84,8 @@ export default function TaskDetail({ params }: { params: { id: string } }) {
   if (error) return <div className="text-center text-red-500">{error}</div>;
   if (!task) return <div className="text-center text-gray-600">Task not found</div>;
 
-  const isDeadlinePassed = task ? new Date(task.deadline) < new Date() : false;
+  const isDeadlinePassed = task ? new Date(task.deadline).getTime() < new Date().getTime() + (5.5 * 60 * 60 * 1000) : false;
+
 
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center">

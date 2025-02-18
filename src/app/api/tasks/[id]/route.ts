@@ -32,22 +32,20 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
 
   return NextResponse.json(task);
 }
+
+
 export async function PUT(request: NextRequest, { params }: { params: { id: string } }) {
   const userId = await getUserIdFromToken(request);
   if (!userId) return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
-
   const { title, description, status, deadline } = await request.json();
   if (!title || !description || !status || !deadline) {
     return NextResponse.json({ message: "All fields are required" }, { status: 400 });
   }
-
   const client = await clientPromise;
   const db = client.db();
   const taskId = params.id;
-
   if (!ObjectId.isValid(taskId)) return NextResponse.json({ message: "Invalid Task ID" }, { status: 400 });
 
-  // Check if the task is expired
   const existingTask = await db.collection("tasks").findOne({ _id: new ObjectId(taskId), userId: new ObjectId(userId) });
 
   if (!existingTask) return NextResponse.json({ message: "Task not found" }, { status: 404 });
@@ -55,11 +53,16 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
   if (existingTask.status === "EXPIRED") {
     return NextResponse.json({ message: "Cannot update an expired task" }, { status: 403 });
   }
+  const currentISTTime = new Date(Date.now() + 5.5 * 60 * 60 * 1000);
+  const taskDeadline = new Date(existingTask.deadline);
+
+  if (currentISTTime > taskDeadline) {
+    return NextResponse.json({ message: "Cannot update task after the deadline" }, { status: 403 });
+  }
 
   const result = await db.collection("tasks").updateOne(
     { _id: new ObjectId(taskId), userId: new ObjectId(userId) },
-    { $set: { title, description, status, deadline: new Date(deadline)
-} }
+    { $set: { title, description, status, deadline: new Date(deadline) } }
   );
 
   return NextResponse.json({ message: "Task updated successfully" });
