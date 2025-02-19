@@ -6,7 +6,7 @@ export async function middleware(request: NextRequest) {
 
   // If no token, redirect to login only for protected routes
   if (!token) {
-    if (['/dashboard', '/api/tasks', '/profile', '/tasks', '/history'].some(route => request.nextUrl.pathname.startsWith(route))) {
+    if (['/dashboard', '/api/tasks', '/profile', '/tasks','/tasks/create','/profile/change-password', '/history'].some(route => request.nextUrl.pathname.startsWith(route))) {
       return NextResponse.redirect(new URL('/auth/login', request.url));
     }
     return NextResponse.next();
@@ -30,5 +30,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/dashboard', '/api/tasks', '/profile', '/tasks', '/history', '/auth/login'],
+  matcher: ['/dashboard', '/api/tasks', '/profile','/tasks/create','/profile/change-password', '/tasks', '/history', '/auth/login'],
 };
