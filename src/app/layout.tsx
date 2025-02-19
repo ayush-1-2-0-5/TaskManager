@@ -30,8 +30,11 @@ export default function RootLayout({
               <h2 className="text-2xl font-semibold mb-4 text-white">Quick Links</h2>
               <ul className="text-purple-200 space-y-2">
                 <li><Link href="/" className="hover:text-white transition duration-300">Home</Link></li>
-                <li><Link href="/tasks" className="hover:text-white transition duration-300">My Tasks</Link></li>
+                <li><Link href="/auth/login" className="hover:text-white transition duration-300">Login</Link></li>
+                <li><Link href="/dashboard" className="hover:text-white transition duration-300">Dashboard</Link></li>
+                <li><Link href="/history" className="hover:text-white transition duration-300">History</Link></li>
                 <li><Link href="/profile" className="hover:text-white transition duration-300">Profile</Link></li>
+                <li><Link href="/profile/change-password" className="hover:text-white transition duration-300">Change Password</Link></li>
                 <li><Link href="/tasks/create" className="hover:text-white transition duration-300">Create Task</Link></li>
               </ul>
             </div>

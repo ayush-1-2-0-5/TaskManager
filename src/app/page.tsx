@@ -40,9 +40,9 @@ export default function Home() {
           <h2 className="text-3xl font-extrabold text-white text-center">Why Choose TaskMaster?</h2>
           <div className="mt-10 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
             {[
-              { title: "Smart Scheduling", description: "AI-powered task prioritization to help you focus on what matters most." },
-              { title: "Deadline Tracking", description: "Never miss a deadline with our intelligent reminder system." },
-              { title: "Productivity Insights", description: "Gain valuable insights into your productivity patterns and improve your workflow." },
+              { title: "Smart Scheduling", description: "Task prioritization to help you focus on what matters most." },
+              { title: "Deadline Tracking", description: "Never miss a deadline with our intelligent system." },
+              { title: "Productivity Insights", description: "Gain valuable insights into your productivity patterns and improve your workflow through charts." },
             ].map((feature) => (
               <div 
                 key={feature.title}
